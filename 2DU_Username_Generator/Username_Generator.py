@@ -12,7 +12,7 @@ def CleanStudentsList(list:'dictionary') -> 'list':
             CleanList.append(list["students"][student])
     return CleanList
     
-def CreateLoginsForStudents(students_list:'list') -> 'list':
+def CreateLoginsForStudents(students_list:'list',dictionary:'dictionary') -> 'dictionary':
     logins = []
     for student in students_list:
         iterator_through_same_names=2
@@ -30,9 +30,10 @@ def CreateLoginsForStudents(students_list:'list') -> 'list':
                 temp_login=temp_login[:-len(str(iterator_through_same_names))]+str(iterator_through_same_names)
                 iterator_through_same_names+=1
         logins.append(temp_login)    
-    return logins
+    dictionary['usernames']=logins
+    return dictionary
 
 clean_list=CleanStudentsList(data) 
-students_login_list=CreateLoginsForStudents(clean_list)
+dictionary_of_all_users=CreateLoginsForStudents(clean_list,data)
 
-print(students_login_list)
+print(dictionary_of_all_users)
