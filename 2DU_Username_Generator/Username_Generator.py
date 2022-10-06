@@ -1,6 +1,6 @@
 data = {
-    "students":["Adam Levine", "Monica Muller", "John Deere", "John Deere", "John Deere", "John Deere", "John Deere", "John Deere", "John Deere", "John Deere", "John Deere", "John Deere", "John Deere", "John Deere"],
-    "active":[True, False, True, True, True, True, True, True, True, True, True, True, True, True]
+    "students":["Adam Yen", "Monica Muller", "John Deere", "John Deere"],
+    "active":[True, False, True, True]
 }
 
 
