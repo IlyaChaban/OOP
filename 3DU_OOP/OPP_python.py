@@ -54,33 +54,20 @@ class Fraction:
         else:
             return False
 
-    def normalize2(num, den): # i call this method 4 times. So, it is necessary
-        gcd = math.gcd(int(num), int(den))
-        den = den / gcd
-        num = num / gcd
-        return([num,den])
-
     def add(self, other):
         # take other Fraction, execute adding, return new Fraction with the result
         new_den = self.den * other.den
         self.num = (self.num * int(new_den/self.den) + other.num*int(new_den/other.den))
         self.den = new_den
-
-        # gcd = math.gcd(int(self.num), int(self.den))
-        # print(gcd)
-        # self.den = self.den / gcd
-        # self.num = self.num / gcd
-
-        self.num, self.den = Fraction.normalize2(self.num,self.den)
-        return Fraction(int(self.num), int(self.den))
+        
+        return Fraction(int(self.num), int(self.den)).normalize()
 
     def sub(self, other):
         # take other Fraction, execute subtraction, return new Fraction with the result
         new_den = self.den * other.den
         self.num = (self.num * int(new_den / self.den) - other.num * int(new_den / other.den))
         self.den = new_den
-        self.num, self.den = Fraction.normalize2(self.num, self.den)
-        return Fraction(int(self.num), int(self.den))
+        return Fraction(int(self.num), int(self.den)).normalize()
 
 
     def mul(self, other):
@@ -97,8 +84,8 @@ class Fraction:
         new_den = self.den * other.den
         self.num = (self.num * int(new_den / self.den) + other.num * int(new_den / other.den))
         self.den = new_den
-        self.num, self.den = Fraction.normalize2(self.num, self.den)
-        return Fraction(int(self.num), int(self.den))
+
+        return Fraction(int(self.num), int(self.den)).normalize()
 
     def __sub__(self, other):
         # magic method for operation `-`
@@ -106,8 +93,7 @@ class Fraction:
         new_den = self.den * other.den
         self.num = (self.num * int(new_den / self.den) - other.num * int(new_den / other.den))
         self.den = new_den
-        self.num, self.den = Fraction.normalize2(self.num, self.den)
-        return Fraction(int(self.num), int(self.den))
+        return Fraction(int(self.num), int(self.den)).normalize()
 
     def __mul__(self, other):
         # magic method for operation `*`
