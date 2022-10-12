@@ -40,9 +40,8 @@ class Fraction:
         # magic method for comparison `<`
         # compare two fractions if the first one is less than second one
         # example 1/3 <= 1/2
-        common_denominator = self.den * other.den
         
-        if common_denominator/self.den * self.num < common_denominator/other.den * other.num:
+        if  self.num*other.den < other.num*self.den:
             return True
         else:
             return False
@@ -51,26 +50,24 @@ class Fraction:
         # magic method for comparison `<=`
         # compare two fractions if the first one is less than or equal to the second one
         # example 1/3 <= 1/2
-        common_denominator = self.den * other.den
-        if common_denominator/self.den * self.num <= common_denominator/other.den * other.num:
+        if self.num*other.den <= other.num*self.den:
             return True
         else:
             return False
 
     def add(self, other):
         # take other Fraction, execute adding, return new Fraction with the result
-        new_den = self.den * other.den
-        numerator = (self.num * int(new_den/self.den) + other.num*int(new_den/other.den))
-        denominator = new_den
+        denominator = self.den * other.den
+        numerator = (self.num * other.den + other.num * self.den)
         
-        return Fraction(int(numerator), int(denominator)).normalize()
+        return Fraction(numerator, denominator).normalize()
 
     def sub(self, other):
         # take other Fraction, execute subtraction, return new Fraction with the result
-        new_den = self.den * other.den
-        numerator = (self.num * int(new_den / self.den) - other.num * int(new_den / other.den))
-        denominator = new_den
-        return Fraction(int(numerator), int(denominator)).normalize()
+        denominator = self.den * other.den
+        numerator = (self.num * other.den - other.num * self.den)
+        
+        return Fraction(numerator, denominator).normalize()
 
 
     def mul(self, other):
@@ -84,19 +81,18 @@ class Fraction:
     def __add__(self, other):
         # magic method for operation `+`
         # same as add()
-        new_den = self.den * other.den
-        numerator = (self.num * int(new_den/self.den) + other.num*int(new_den/other.den))
-        denominator = new_den
+        denominator = self.den * other.den
+        numerator = (self.num * other.den + other.num * self.den)
         
-        return Fraction(int(numerator), int(denominator)).normalize()
+        return Fraction(numerator, denominator).normalize()
 
     def __sub__(self, other):
         # magic method for operation `-`
         # same as sub()
-        new_den = self.den * other.den
-        numerator = (self.num * int(new_den / self.den) - other.num * int(new_den / other.den))
-        denominator = new_den
-        return Fraction(int(numerator), int(denominator)).normalize()
+        denominator = self.den * other.den
+        numerator = (self.num * other.den - other.num * self.den)
+        
+        return Fraction(numerator, denominator).normalize()
 
     def __mul__(self, other):
         # magic method for operation `*`
