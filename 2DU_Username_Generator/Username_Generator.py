@@ -1,13 +1,13 @@
 data = {
-    "students":["Adam Yen", "Monica Muller", "John Deere", "John Deere"],
-    "active":[True, False, True, True]
+    "students":["Adam Yen", "Monica Muller", "John Deere", "John Deere", "John Deere", "John Deere", "John Deere", "John Deere", "John Deere"],
+    "active":[True, False, True, True, True, True, True, True, True]
 }
 
 
 
 def CleanStudentsList(list:'dictionary') -> 'list':
     CleanList=[]
-    for student in range(0,len(list["students"])):
+    for student in range(0, len(list["students"])):
         if list["active"][student] == True:
             CleanList.append(list["students"][student])
     return CleanList
@@ -15,7 +15,7 @@ def CleanStudentsList(list:'dictionary') -> 'list':
 def CreateLoginsForStudents(students_list:'list',dictionary:'dictionary') -> 'dictionary':
     logins = []
     for student in students_list:
-        iterator_through_same_names=2
+        iterator_through_same_names=1
         student_name_and_surname_array = student.split()
         temp_login = student_name_and_surname_array[1][0:5] + student_name_and_surname_array[0][0:3]
         temp_login=temp_login.lower()
