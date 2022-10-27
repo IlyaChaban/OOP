@@ -67,9 +67,6 @@ class LivingEntity(Entity):
         # use parent constructor
         # initialize level, damage and attack_range after both are ints
         super().__init__(name, coords, hit_points)
-        self.name = name
-        self.coords = coords
-        self.hit_points = hit_points
         self.level = level
         self.damage = damage
         self.attack_range = attack_range
