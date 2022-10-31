@@ -6,20 +6,25 @@ class Queue:
     
     def put(self, data):
         # put data in a queue
-        prev_for_tail = self.tail
-        if self.head == None:
-            self.head = data
-            self.tail = data #Ринат говорит что тэйла тут не будет
-            
-        elif self.full():
-            print("Queue is Full")
-            
+        New_Node = Node()
+        New_Node.data = data
+        New_Node.previous = None
+        New_Node.next = None
         
-        elif not self.full():
-            self.tail.next = data
+        if self.size() == self.maxsize:
+            print("queue is full")
+        
+        if self.size() >= 1 and self.size() < self.maxsize :
+            New_Node.previous = self.tail
+            self.tail.next = New_Node
             self.tail = self.tail.next
-            self.tail.previous = prev_for_tail
-    
+        
+        if self.size() == 0:
+            self.head=New_Node
+            self.tail=New_Node
+            New_Node.previous = None
+            New_Node.next = None
+
     def get(self):
         # get data from a queue
         if self.head == None:
@@ -57,46 +62,38 @@ class Queue:
         while start_head != None:
             size += 1 
             start_head = start_head.next
-            print(size)
         return size
         
     def printWholeQueue(self):
         start_head = self.head
-        print("----------")
+        print("\----------",end=' ')
         while start_head != None:
-            print(start_head.data)
+            print(start_head.data,end=' ')
             start_head = start_head.next
+        print("----------/")    
 class Node:
     def __init__(self, data=None):
         self.data = data
         self.next = None
         self.previous = None
         
-        
-queue = Queue(maxsize = 3)
+queue = Queue(maxsize=3) 
 
 print("---Test Case put expected to print abc---")
-Node1 = Node("a")
-queue.put(Node1)
+queue.put("a")
+print(queue.get())
+queue.put("b")
+print(queue.get())
+queue.put("c")
 print(queue.get())
 
-
-Node2 = Node("b")
-queue.put(Node2)
-print(queue.get())
-
-Node3 = Node("c")
-queue.put(Node3)
-print(queue.get())
-
-
-print("---Test Case size expected to print 3---")
-queue.put(Node1)
-queue.put(Node2)
-queue.put(Node3)
+print("\n\n---Test Case: size expected to print 3---")
+queue.put("a")
+queue.put("b")
+queue.put("c")
 print(queue.size())
 
-print("---Test Case get expected to print 32100---")
+print("\n\n---Test Case: get expected to print 32100---")
 print(queue.size())
 queue.get()
 print(queue.size())
@@ -107,28 +104,28 @@ print(queue.size())
 queue.get()
 print(queue.size())
 
-print("---Test Case empty expected to print True---")
+print("\n\n---Test Case: empty expected to print True---")
 print(queue.empty())
 
-print("---Test Case get 1 from 2---")
+print("\n\n---Test Case: get 1 element from queue of size 2---")
 queue.printWholeQueue()
-queue.put(Node1)
+queue.put("a")
 queue.printWholeQueue()
-queue.put(Node2)
+queue.put("b")
 queue.printWholeQueue()
 queue.get()
 queue.printWholeQueue()
-print(queue.size())
-print(queue.head.data, queue.tail.data)
+print('size is:',queue.size())
+print('head is:',queue.head.data,',tail is:', queue.tail.data)
 
-print("---Test Case empty expected to print False---")
+print("\n\n---Test Case: empty expected to print False---")
 print(queue.empty())
 
-print("---Test Case full expected to print False---")
+print("\n\n---Test Case: full expected to print False---")
 print(queue.full())
 
-print("---Test Case full expected to print True---")
-queue.put(Node1)
-queue.put(Node2)
-Node4 = Node("d")
-queue.put(Node4) 
+print("\n\n---Test Case: full expected to print True---")
+queue.put("a")
+queue.put("b")
+queue.put("d") 
+print(queue.full())
