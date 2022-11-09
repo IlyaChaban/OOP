@@ -4,21 +4,33 @@ class Node:
         self.left = None
         self.right = None
 
-    def insert(self, data):
+    def insert(self, tree, data):
         if self.data is not None:
-            if data < self.data:
+            if data<self.data:
                 if self.left is None:
-                    self.left = Node(data)
+                    self.left=Node(data)
                 else:
                     self.left.insert(data)
-                    
-            elif data > self.data:
+            elif data>self.data:
                 if self.right is None:
-                    self.right = Node(data)
+                    self.right=Node(data)
                 else:
                     self.right.insert(data)
         else:
-            self.data = data
+            self.data=data
+            
+        self.level_tree()
+    def level_tree(self,tree):
+        if self.balance<=-2:
+            Node.left_rotation(tree)
+        if self.balance >= 2:
+            Node.right_rotation(tree)
+
+            
+        if tree.right is not None: 
+            self.balance(tree.right)
+        if tree.left is not None:
+            self.balance(tree.left)
     
     def right_rotation(self, z):
         y = z.left
@@ -36,7 +48,7 @@ class Node:
         z.right = T2
         return y
 
-    def balance(self, tree:Node) => bool, int:
+    def balance(self) => bool, int:
         left_depth = self.max_depth(self.left)
         right_depth = self.max_depth(self.right)
         return left_depth - right_depth
