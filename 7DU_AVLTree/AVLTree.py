@@ -5,7 +5,6 @@ class Node:
         self.right = None
 
     def insert(self, data):
-                                        
         if self.data is not None:
             if data < self.data:
                 if self.left is None:
@@ -18,25 +17,29 @@ class Node:
                     self.right = Node(data)
                 else:
                     self.right.insert(data)
-        
         else:
             self.data = data
+    
+    def right_rotation(self, z):
+        y = z.left
+        T3 = y.right
 
-    def right_rotation():
-        
-    def left_rotation():
-        
+        y.right = z
+        z.left = T3
+        return y
 
-    def in_balance(self, tree):
+    def left_rotation(self, z):
+        y = z.right
+        T2 = y.left
+
+        y.left = z
+        z.right = T2
+        return y
+
+    def balance(self, tree:Node) => bool, int:
         left_depth = self.max_depth(self.left)
         right_depth = self.max_depth(self.right)
-        
-        if (right_depth - left_depth)**2 <= 1:
-            return True
-        else:
-            return False
-        
-        return True if in_balance(self.left) and in_balance(self.right) else False
+        return left_depth - right_depth
 
     def  print_tree(self,tree, level = 0, prefix = ""):
         if tree.data:
@@ -71,13 +74,8 @@ class Node:
             if tree.data > data:
                 return self.contains(tree.left, data)
         return False
-    
-
-
 
 tree = Node()
-
-
 
 tree.insert(1)
 tree.insert(2)
@@ -92,7 +90,6 @@ print(tree.in_balance(tree))
 #assert tree.contains(tree, 3)
 #assert not tree.contains(tree, 20)
 #assert tree.max_depth(tree) <= 2
-
 
 tree = Node()
 
