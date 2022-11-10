@@ -124,7 +124,7 @@ if __name__ == "__main__":
             file.write(str(time).rstrip('\n')+", ")
         
         file.close()
-    
+
     if os.path.exists("results.txt"):
         file = open("results.txt", "r")
         all_data = file.readlines()
