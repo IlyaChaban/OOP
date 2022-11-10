@@ -109,9 +109,6 @@ class Node:
             self.right=self.right.right
         self.left=leftNode
 
-
-
-
 tree = Node()
 
 tree.insert(1)
