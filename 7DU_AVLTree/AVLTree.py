@@ -64,10 +64,10 @@ class Node:
         
         if tree.equlibrium > 1:
             Node.rotate_right(tree)
-            tree.equlibrium_calc()
+            
         if tree.equlibrium < -1:
             Node.rotate_left(tree)
-            tree.equlibrium_calc()
+            
             
         if tree.right is not None: 
             self.balance_tree(tree.right)
@@ -94,9 +94,9 @@ class Node:
             self.data=self.left.data
             self.left=self.left.left
         self.right = rightNode
+        self.equlibrium_calc()
 
     def rotate_left(self):
-        
         leftNode=Node(self.data)
         
         if self.left is not None:
@@ -108,6 +108,10 @@ class Node:
             self.data=self.right.data  
             self.right=self.right.right
         self.left=leftNode
+        self.equlibrium_calc()
+
+
+
 
 tree = Node()
 
