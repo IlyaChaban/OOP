@@ -155,5 +155,6 @@ if __name__ == "__main__":
         plt.legend(["Selection sort","Bubble sort","Merge sort"])
         plt.xlabel("Amount of list's elements")
         plt.ylabel("Processing time")
+        plt.title("Comparsion of sorting algorithms")
         
         plt.show()
