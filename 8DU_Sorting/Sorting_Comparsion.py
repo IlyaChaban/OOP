@@ -144,8 +144,6 @@ if __name__ == "__main__":
         merge_sort_data = merge_sort_data.split(', ')[:-1]
         merge_sort_data = [float(x) for x in merge_sort_data]
         
-        print(len(merge_sort_data))
-        
         X = [i*10 for i in range(number_of_tests)]
         
         plt.plot(X,selection_sort_data)
@@ -157,4 +155,24 @@ if __name__ == "__main__":
         plt.ylabel("Processing time")
         plt.title("Comparsion of sorting algorithms")
         
+        #plt.show()
+        
+        
+        
+        selection_sort_bar_data = [None]*249
+        bubble_sort_bar_data = [None]*249
+        merge_sort_bar_data = [None]*249
+        
+        for i in range(249):
+        
+            selection_sort_bar_data[i] = [[i*200+100],[selection_sort_data[ (i)*20 : (i+1)*20 ]]]
+            bubble_sort_bar_data[i] = [[i*200+100],[bubble_sort_data[ (i)*20 : (i+1)*20 ]]]
+            merge_sort_bar_data[i] = [[i*200+100],[merge_sort_data[ (i)*20 : (i+1)*20 ]]]
+            
+            plt.boxplot(selection_sort_bar_data[i][1], positions = selection_sort_bar_data[i][0], widths = 50)
+            plt.boxplot(bubble_sort_bar_data[i][1], positions = bubble_sort_bar_data[i][0], widths = 50)
+            plt.boxplot(merge_sort_bar_data[i][1], positions = merge_sort_bar_data[i][0], widths = 50)
+            plt.xlim([0,4990])
+        plt.savefig('sorting.png')
         plt.show()
+        
