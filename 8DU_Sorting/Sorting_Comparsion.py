@@ -5,9 +5,9 @@ import matplotlib.pyplot as plt
 
 def calculate_time(func):
     def inner(*args,**kwargs):
-        start = time.time()
+        start = time.perf_counter()
         ret = func(*args,**kwargs)
-        stop = time.time()
+        stop = time.perf_counter()
         #print(f"Elapsed time: {stop - start}")
         return ret, stop - start
     return inner
